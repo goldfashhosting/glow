@@ -9,3 +9,5 @@
  */
 
 
+include ('inc/gfunctions/functions.php');
+include ('inc/webapps/shortcodes.php');

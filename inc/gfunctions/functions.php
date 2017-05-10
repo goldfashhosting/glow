@@ -18,14 +18,14 @@ add_action( 'admin_init', 'add_support_caps');
 function GOS_ui_api_objects( $user_contact_method ) {
 
 	$user_contact_method['ui_licensekey_api'] = __( 'User License Key', 'text_domain' );
-	$user_contact_method['ui_gold2gk_api'] = __( 'User Gold2GK Key', 'text_domain' );
-	$user_contact_method['ui_ppin_key'] = __( 'User UPiK Code', 'text_domain' );
+	//$user_contact_method['ui_gold2gk_api'] = __( 'User Gold2GK Key', 'text_domain' );
+	//$user_contact_method['ui_ppin_key'] = __( 'User UPiK Code', 'text_domain' );
 	$user_contact_method['ui_goldpay_account'] = __( 'User Billing Account Number', 'text_domain' );
 
 	return $user_contact_method;
 
 }
-//add_filter( 'user_contactmethods', 'GOS_ui_api_objects' );
+add_filter( 'user_contactmethods', 'GOS_ui_api_objects' );
 // #F2
 // Register oEmbed providers 
 function adsonlineco_oembed_provider() {
@@ -61,7 +61,7 @@ $ui[firstname] = $current_user->user_firstname;
 $ui[lastname] = $current_user->user_lastname;
 $ui[displayname] = $current_user->display_name;
 $ui[gblid] = $current_user->ID; 
-$bar = get_user_option( 'gsetapilc', get_current_user_id() );
+$bar = get_user_option( 'ui_licensekey_api', get_current_user_id() );
 	$abar = get_user_option( 'gsetapiac', get_current_user_id() );
 	$abarpin = get_user_option( 'gsetapiacpin1', get_current_user_id() );
 	$quikaccess = get_user_option( 'gsetqacb', get_current_user_id() );
@@ -144,20 +144,7 @@ $bar = get_user_option( 'gsetapilc', get_current_user_id() );
             </td>
         </tr>
         
-        <tr>
-            <th><label for="gsetapilc">License Key</label></th>
- 
-            <td>
-                <input type="text" name="gsetapilc" id="gsetapilc" value="<?
-                if (!empty($_GET['oiHaveALK'])){ 
-                echo base64_decode($_GET['oiHaveALK']); 
-                }else{
-                echo $bar; 
-                }
-                ?>" class="regular-text" /><br />
-                <span class="description">Please enter your License Key.</span>
-            </td>
-        </tr>
+       
  
  	<tr>
             <th><label for="gsetapiac">Access Key</label></th>
@@ -342,7 +329,7 @@ function my_save_extra_profile_fields( $user_id ) {
         return false;
  
     /* Copy and paste this line for additional fields. Make sure to change 'twitter' to the field ID. */
-    update_usermeta( absint( $user_id ), 'gsetapilc', wp_kses_post( $_POST['gsetapilc'] ) );
+  //  update_usermeta( absint( $user_id ), 'gsetapilc', wp_kses_post( $_POST['gsetapilc'] ) );
     update_usermeta( absint( $user_id ), 'gsetapiac', wp_kses_post( $_POST['gsetapiac'] ) );
     update_usermeta( absint( $user_id ), 'gsetapiacpin1', wp_kses_post( $_POST['gsetapiacpin1'] ) );
     update_usermeta( absint( $user_id ), 'gsetqacb', wp_kses_post( $_POST['gsetqacb'] ) );

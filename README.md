@@ -1,4 +1,5 @@
-=== GLOW ===
+== GLOW ==
+
 Contributors: raceanf
 Tags: Glow, Init
 Donate link: http://goldfash.com

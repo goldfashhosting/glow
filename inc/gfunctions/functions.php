@@ -531,5 +531,4 @@ function my_admin_footer_function() {
 	//include 'footerjs.php';
 	
 }
-
-
+}

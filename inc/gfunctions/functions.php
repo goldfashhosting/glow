@@ -520,5 +520,16 @@ if (  $bar == '' ) {
 } else {
     echo ''. $bar .'';
 }
-}
+
 // #
+
+
+
+add_action('admin_footer', 'my_admin_footer_function');
+function my_admin_footer_function() {
+	//include 'ADSFooter.php'; 
+	//include 'footerjs.php';
+	
+}
+
+

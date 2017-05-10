@@ -249,4 +249,20 @@ if ( $url === ''. $protocol .'goldfash.org/invitation-subscription-successful/?o
 
 }
 add_shortcode( 'gos', 'GOS_fr_ui_actions' ); 
-//
+//[Ads]
+function showads() {
+    return '<script type="text/javascript"><!--
+google_ad_client = "pub-3637220125174754";
+google_ad_slot = "4668915978";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+';
+}
+
+add_shortcode('Ads', 'showads');
+

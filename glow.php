@@ -2,7 +2,7 @@
 
 /**
  * @package glow
- * @version 2.1.1
+ * @version 2.1.2
  */
 /*
 Plugin Name: GLOW

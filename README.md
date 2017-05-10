@@ -1,4 +1,4 @@
-== GLOW ==
+** GLOW **
 
 Contributors: raceanf
 Tags: Glow, Init
@@ -9,13 +9,13 @@ Stable tag: 4.7.4
 
 GLOW provides various functions for GMWP+. GLOW is also the heartbeat of using GMWP+.
 
-== Installation ==
+** Installation **
 Installed And Ran Automatically
 
-== Frequently Asked Questions ==
+** Frequently Asked Questions **
 Why is this plugin neccessary? A: Without this plugin, GMWP+ wouldn\'t work for your account.
 
-== Changelog ==
+** Changelog **
 
 **2.0 - Current Stable**
 
@@ -55,5 +55,5 @@ Why is this plugin neccessary? A: Without this plugin, GMWP+ wouldn\'t work for 
 
 ## Contact
 
-== Upgrade Notice ==
+** Upgrade Notice **
 To keep your account working properly, we release updates frequently.

@@ -2,13 +2,13 @@
 
 /**
  * @package glow
- * @version 2.1.2
+ * @version v2.2.1
  */
 /*
 Plugin Name: GLOW
 Plugin URL: http://goldfash.com?plugins
 Description: GLOW provides various functions for GMWP+. GLOW is also the heartbeat of using GMWP+.
-Version: 2.1.2
+Version: v2.2.1
 Author: GOD1ST.Cloud Developers
 Author URI:        http://GOD1st.Cloud
 Contributors:      raceanf

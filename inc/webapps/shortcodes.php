@@ -1,5 +1,6 @@
 <?
 //[wpb-random-posts]
+
 function header_rand_posts() { 
 
 $args = array(
@@ -31,6 +32,7 @@ return $string;
 add_shortcode('wpb-random-posts','header_rand_posts');
 add_filter('widget_text', 'do_shortcode'); 
 //[subscriptioninfo]
+
 function wpmu_psi_dashboard_widget_display() {
 global $psts, $wpdb, $current_site, $blog_id;
   		$levels = (array)get_site_option('psts_levels');
@@ -85,19 +87,20 @@ function gos_site_autobilling_v1() {
 $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
  
-if ( $url === ''. $protocol .'http://legal.god1st.cloud/autobilling/?success=ppa.ab' && ! empty( $_REQUEST['success'] ) && $_REQUEST['success'] === 'ppa.ab' ) {
+if ( $url === ''. $protocol .'legal.god1st.cloud/autobilling/?success=ppa.ab' && ! empty( $_REQUEST['success'] ) && $_REQUEST['success'] === 'ppa.ab' ) {
 echo ('<h1>Thank You. Your <font color="green">AutoBilling+</font> Setup is <font color="green">Complete</font>.</h1>
 <h3>Starting May 1, 2017, you will receive a <font color="green">5%</font> <small><i>pre-tax</i></small> <font color="green">discount</font> for one (1) invoice <font color="green">+</font> you will receive a single or split invoice(s) between the 1st & 15th of each month for your active services and past due invoices.</h3>
 <h4>You may view, modify and remove existing Agreements below. </h4>');
 }
 
-if ( $url === ''. $protocol .'http://legal.god1st.cloud/autobilling/?cancelled=ppa.ab' && ! empty( $_REQUEST['cancelled'] ) && $_REQUEST['cancelled'] === 'ppa.ab' ) {
+if ( $url === ''. $protocol .'legal.god1st.cloud/autobilling/?cancelled=ppa.ab' && ! empty( $_REQUEST['cancelled'] ) && $_REQUEST['cancelled'] === 'ppa.ab' ) {
 echo ('<h1>oopsie it looks like something went wrong.</h1><br />
 <h3>Your <font color="red">AutoBilling+</font> Setup is <font color="red">Incomplete</font>, To get <font color="green">5%</font> off per month click the Automatic Billing Button Below.</h3><br />');
 }
 
 
 }
+
 add_shortcode('ab:verify', 'gos_site_autobilling_v1');
 //[installment]
 function gos_site_ippid() {
@@ -266,3 +269,4 @@ src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 add_shortcode('Ads', 'showads');
 
+?>

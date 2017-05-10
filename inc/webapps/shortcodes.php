@@ -268,5 +268,18 @@ src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
 }
 
 add_shortcode('Ads', 'showads');
+//[billingsummary]
+function billingsummary() {
+	 if (is_user_logged_in() === true ) {
+        // logged in.
+  echo ('<h1> Recent Billing Activity </h1>');
+  echo do_shortcode('[wp-invoice-history]');
+  
+  } else {
+        echo ('<h4> Please Login to see Recent Billing Activity </h4>');
+} 
+
+}
+add_shortcode('billingsummary', 'billingsummary'); 
 
 ?>

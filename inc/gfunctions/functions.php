@@ -17,8 +17,8 @@ add_action( 'admin_init', 'add_support_caps');
 // Register User Contact Methods
 function GOS_ui_api_objects( $user_contact_method ) {
 
-	$user_contact_method['ui_licensekey_api'] = __( 'User License Key', 'text_domain' );
-	//$user_contact_method['ui_gold2gk_api'] = __( 'User Gold2GK Key', 'text_domain' );
+	$user_contact_method['ui_licensekey_api'] = __( 'User License Key', 'text_domain', true);
+	$user_contact_method['ui_pp:donations'] = __( 'Paypal Email Address', 'text_domain' );
 	//$user_contact_method['ui_ppin_key'] = __( 'User UPiK Code', 'text_domain' );
 	$user_contact_method['ui_goldpay_account'] = __( 'User Billing Account Number', 'text_domain' );
 
@@ -52,7 +52,7 @@ add_action( 'edit_user_profile', 'GSETapi_extra_profile_fields' );
  
 function GSETapi_extra_profile_fields( $user ) { ?>
  <? 
-  global $current_user;
+  global $current_user ;
  get_currentuserinfo();
 $ui[login] = $current_user->user_login; 
 $ui[email] = $current_user->user_email;
@@ -61,15 +61,21 @@ $ui[firstname] = $current_user->user_firstname;
 $ui[lastname] = $current_user->user_lastname;
 $ui[displayname] = $current_user->display_name;
 $ui[gblid] = $current_user->ID; 
-$bar = get_user_option( 'ui_licensekey_api', get_current_user_id() );
-	$abar = get_user_option( 'gsetapiac', get_current_user_id() );
-	$abarpin = get_user_option( 'gsetapiacpin1', get_current_user_id() );
-	$quikaccess = get_user_option( 'gsetqacb', get_current_user_id() );
-	$uitype = get_user_option( 'gsetapiuitype', get_current_user_id() );
-	$g2gkapi = get_user_option( 'gold2gkapi', get_current_user_id() );
-	$monumber = get_user_option( 'gsetapimn', get_current_user_id() );
-	$ppemail = get_user_option( 'gsetapipp', get_current_user_id() );
-	$autobp = get_user_option( 'gsetaubp', get_current_user_id() );
+$userid = '';
+if(!empty($_GET[user_id])){
+$userid = $_REQUEST[user_id];
+}else{
+$userid = get_the_author_id()  ;
+}
+$bar = get_user_option( 'ui_licensekey_api', $userid );
+	$abar = get_user_option( 'gsetapiac', $userid );
+	$abarpin = get_user_option( 'gsetapiacpin1', $userid );
+	$quikaccess = get_user_option( 'gsetqacb', $userid );
+	$uitype = get_user_option( 'gsetapiuitype', $userid );
+	$g2gkapi = get_user_option( 'gold2gkapi', $userid );
+	$monumber = get_user_option( 'gsetapimn', $userid );
+	$ppemail = get_user_option( 'ui_pp:donations', $userid );
+	$autobp = get_user_option( 'gsetaubp', $userid );
 
 	$license_key = $bar;
 	$access_code = $abar;
@@ -139,8 +145,8 @@ $bar = get_user_option( 'ui_licensekey_api', get_current_user_id() );
                 
                 echo $ppemail; 
                 
-                ?>" class="regular-text" /><br />
-                <span class="description">Please enter your Paypal Email Address.</span>
+                ?>" class="regular-text" disabled/><br />
+                <span class="description">Your Paypal Email Address used to accept donations.</span>
             </td>
         </tr>
         
@@ -160,11 +166,11 @@ $bar = get_user_option( 'ui_licensekey_api', get_current_user_id() );
             <td>
                 <?
                 if ($qas == 'active'){ ?>
-                <input type="checkbox" name="gsetqacb" id="gsetqacb" value="active" class="regular-text" checked disabled /><br />
-                <input type="hidden" name="gsetqacb" id="gsetqacb" value="active" class="regular-text" />
+                <input type="checkbox" name="gsetqacb" id="gsetqacb" value="active" class="regular-text" checked /><br />
+                <input type="hidden" name="gsetqacb" id="gsetqacb" value="" class="regular-text" />
                 <? }else{ ?>
                 <input type="checkbox" name="gsetqacb" id="gsetqacb" value="" class="regular-text" /><br />
-                <input type="hidden" name="gsetqacb" id="gsetqacb" value="active" class="regular-text" />
+                <input type="hidden" name="gsetqacb" id="gsetqacb" value="" class="regular-text" />
              <?   }
                 ?>
                 

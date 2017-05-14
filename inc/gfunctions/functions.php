@@ -66,16 +66,20 @@ if(!empty($_GET[user_id])){
 $userid = $_REQUEST[user_id];
 }else{
 $userid = get_the_author_id()  ;
+}if(empty($userid )){
+$userid = $ui[gblid] = $current_user->ID; 
 }
 $bar = get_user_option( 'ui_licensekey_api', $userid );
 	$abar = get_user_option( 'gsetapiac', $userid );
 	$abarpin = get_user_option( 'gsetapiacpin1', $userid );
+	
 	$quikaccess = get_user_option( 'gsetqacb', $userid );
 	$uitype = get_user_option( 'gsetapiuitype', $userid );
 	$g2gkapi = get_user_option( 'gold2gkapi', $userid );
 	$monumber = get_user_option( 'gsetapimn', $userid );
 	$ppemail = get_user_option( 'ui_pp:donations', $userid );
 	$autobp = get_user_option( 'gsetaubp', $userid );
+	$autobphone = get_user_option( 'gsetaubphone', $userid );
 
 	$license_key = $bar;
 	$access_code = $abar;
@@ -99,6 +103,40 @@ $bar = get_user_option( 'ui_licensekey_api', $userid );
                 
                 ?>" class="regular-text" /><br />
                 <span class="description">Please enter your Mobile Number.</span>
+            </td>
+        </tr>
+        
+          <tr>
+            <th><label for="gsetaubphone">Phone Provider</label></th>
+ 
+            <td>
+            <?
+                if (empty($autobphone)){ 
+                
+                echo '<select name="gsetaubphone" id="gsetaubphone">
+    <option value="@vtext.com">Verizon</option>
+    <option value="@tmomail.net">T-Mobile</option>
+    <option value="@txt.att.net">AT&T</option>
+    <option value="@vmobl.com">Virgin Mobile</option>
+    <option value="@mymetropcs.com">MetroPCS</option>
+    <option value="@mmst5.tracfone.com">TracFone</option>
+    <option value="@myboostmobile.com">Boost Mobile</option>
+    <option value="@mms.cricketwireless.net">Cricket</option>
+    <option value="@ptel.com">Ptel</option>
+    <option value="@text.republicwireless.com">Republic Wireless</option>
+    <option value="@msg.fi.google.com">Google Fi</option>
+    <option value="@message.ting.com">Ting</option>
+    <option value="@tms.suncom.com">Suncom</option>
+    <option value="@email.uscc.net">U.S. Cellular</option>
+    <option value="@cingularme.com">Consumer Cellular</option>
+    <option value="@cspire1.com">C-Spire</option>
+    <option value="@vtext.com">PagePlus</option>
+  </select><br />
+                <span class="description">Please select your mobile phone provider.</span>'; 
+                }else{
+                echo  $autobphone ; 
+                }                ?>
+                 
             </td>
         </tr>
         
@@ -127,10 +165,11 @@ $bar = get_user_option( 'ui_licensekey_api', $userid );
     <option value="14">14th</option>
     <option value="15">15th</option>
   </select><br />
-                <span class="description">Please select your autobilling Payment Date.</span>'; 
+  		 <span class="description">Please select your autobilling Payment Date.</span>'; 
                 }else{
                 echo 'Your AutoBilling+ bill is due on the '. $autobp .' day of the each month. All AutoBilling+ Invoices are ran and issued automatically '; 
                 }
+                
                 ?>
                  
             </td>
@@ -164,17 +203,29 @@ $bar = get_user_option( 'ui_licensekey_api', $userid );
             <th><label for="gsetqacb">Quik-Access</label></th>
  
             <td>
+            
                 <?
                 if ($qas == 'active'){ ?>
-                <input type="checkbox" name="gsetqacb" id="gsetqacb" value="active" class="regular-text" checked /><br />
-                <input type="hidden" name="gsetqacb" id="gsetqacb" value="" class="regular-text" />
+               <?
+             echo '<select name="gsetqacb" id="gsetqacb">
+    <option value="active">Enabled</option>
+    <option value="">Disable</option>
+    
+    
+  </select><br />'; ?>
                 <? }else{ ?>
-                <input type="checkbox" name="gsetqacb" id="gsetqacb" value="" class="regular-text" /><br />
-                <input type="hidden" name="gsetqacb" id="gsetqacb" value="" class="regular-text" />
+                <?
+             echo '<select name="gsetqacb" id="gsetqacb">
+    <option value="">Disabled</option>
+    <option value="active">Enabled</option>
+    
+    
+  </select><br />'; ?>
+               
              <?   }
                 ?>
                 
-                <span class="description">With Quik-Access enabled, you can bypass entering your Personal Pin.<br /><small> Quik-Access is enabled by default for beta purposes.</small></span>
+                <span class="description">With Quik-Access enabled, you can bypass entering your Personal Pin.<br /><small> </span>
             </td>
         </tr>
       
@@ -364,7 +415,7 @@ function sample_license_management_page() {
 	$email = $current_user->user_email;
 	$firstname = $current_user->user_firstname; 
 	$lastname = $current_user->user_lastname;
-	$bar = get_user_option( 'gsetapilc', get_current_user_id() );
+	$bar = get_user_option( 'ui_licensekey_api', get_current_user_id() );
 	$abar = get_user_option( 'gsetapiac', get_current_user_id() );
      
     //
@@ -493,7 +544,7 @@ function sample_license_management_page() {
         <table class="form-table">
             <tr>
                 <th style="width:100px;"><label for="sample_license_key"></label></th>
-                <td ><input class="regular-text" type="hidden" id="sample_license_key" name="sample_license_key"  value="<?=$bar?>" ></td>
+                <td ><input class="regular-text" type="hidden" id="sample_license_key" name="sample_license_key"  value="<? echo $bar ; ?>" ></td>
             </tr>
         </table>
        
@@ -506,12 +557,12 @@ function sample_license_management_page() {
     <?php
     
     echo '</div>';
-    $bar = get_user_option( 'gsetapilc', get_current_user_id() );
+    $bar = get_user_option( 'ui_licensekey_api', get_current_user_id() );
  
 if (  $bar == '' ) {
-    echo $bar ;
+    echo 'You do not have a license key saved.'. $bar .' ';
 } else {
-    echo ''. $bar .'';
+    echo 'Your License Key: '. $bar .'';
 }
 
 // #

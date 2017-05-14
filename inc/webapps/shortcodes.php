@@ -301,13 +301,11 @@ function checklogin_thenRedirect( $atts ) {
  
   
  	 } else {
-  	$to = '?redirect_to='. urlencode($atts['to']) .'';
-  	$redirect = $atts['redirect'] ;
+  	$to = ''. $atts['redirect'] .'?redirect_to='. urlencode($atts['to']) .'';
+  	$redirect = $to ;
 	// Return HTTP Refresh Link in Page
 	return '<meta 
-	http-equiv="refresh" 
-	content="0; 
-	URL=' . $redirect . '" />';
+	http-equiv="refresh" content="0; URL=' . $redirect . '" />';
 	}
 
 }

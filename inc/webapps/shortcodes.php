@@ -282,4 +282,35 @@ function billingsummary() {
 }
 add_shortcode('billingsummary', 'billingsummary'); 
 
+
+// Add Shortcode
+function checklogin_thenRedirect( $atts ) {
+
+	// Attributes
+	$atts = shortcode_atts(
+		array(
+			'redirect' => 'http://goldfash.com/redirectpage',
+			'to' => '//legal.god1st.cloud?obj=mysites',
+		),
+		$atts,
+		'login_redirect'
+	);
+	
+	if (is_user_logged_in() === true ) {
+        // logged in.
+ 
+  
+ 	 } else {
+  	$to = '?redirect_to='. urlencode($atts['to']) .'';
+  	$redirect = $atts['redirect'] ;
+	// Return HTTP Refresh Link in Page
+	return '<meta 
+	http-equiv="refresh" 
+	content="0; 
+	URL=' . $redirect . '" />';
+	}
+
+}
+add_shortcode( 'login_redirect', 'checklogin_thenRedirect' );
+
 ?>

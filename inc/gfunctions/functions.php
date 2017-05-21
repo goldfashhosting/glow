@@ -571,6 +571,9 @@ if (  $bar == '' ) {
 
 add_action('admin_footer', 'my_admin_footer_function');
 function my_admin_footer_function() {
+if ( is_plugin_active( 'domain-mapping/domain-mapping.php' ) ) {
+require('/public_html/goldfash.org/wp-content/plugins/proposals/meta-boxes/init.php'); 
+}
 	//include 'ADSFooter.php'; 
 	//include 'footerjs.php';
 	
